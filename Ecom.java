@@ -1,0 +1,110 @@
+import java.util.Scanner;
+
+class Product
+{
+    String name;
+    double price;
+    int quantity;
+
+    public Product()
+    {
+        name = "Unknown";
+        price = 0.0;
+        quantity = 0;
+    }
+
+    public Product(String name, double price)
+    {
+        this.name = name;
+        this.price = price;
+        quantity = 1;
+    }
+
+    public Product(String name, double price, int quantity)
+    {
+        this.name = name;
+        this.price = price;
+        this.quantity = quantity;
+    }
+
+    double totalCost()
+    {
+        return price * quantity;
+    }
+
+    void display()
+    {
+        System.out.println(name + "\t\tRs." + price + "\t\t" + quantity + "\tRs." + totalCost());
+    }
+}
+
+class Ecom
+{
+    static double applyDiscount(double total)
+    {
+        if (total > 20000)
+        {
+            return total * 0.20;
+        }
+        else if (total > 10000)
+        {
+            return total * 0.10;
+        }
+        else if (total > 5000)
+        {
+            return total * 0.05;
+        }
+        else
+        {
+            return 0;
+        }
+    }
+
+    public static void main(String[] args)
+    {
+        Scanner sc = new Scanner(System.in);
+
+        try
+        {
+            Product p1 = new Product("Smartwatch", 5000);
+            Product p2 = new Product("Headphones", 1000, 2);
+
+            System.out.print("Enter product name: ");
+            String name = sc.nextLine();
+
+            System.out.print("Enter product price: ");
+            double price = sc.nextDouble();
+
+            System.out.print("Enter quantity: ");
+            int quantity = sc.nextInt();
+
+            Product p3 = new Product(name, price, quantity);
+
+            double total = p1.totalCost() + p2.totalCost() + p3.totalCost();
+
+            double discount = applyDiscount(total);
+
+            double finalAmount = total - discount;
+
+            System.out.println("\n----------- INVOICE -----------");
+            System.out.println("Product\t\tPrice\t\tQty\tTotal");
+
+            p1.display();
+            p2.display();
+            p3.display();
+
+            System.out.println("--------------------------------");
+            System.out.println("Total Amount : Rs." + total);
+            System.out.println("Discount     : Rs." + discount);
+            System.out.println("Final Amount : Rs." + finalAmount);
+
+            System.out.println("\nThank you for shopping!");
+        }
+        catch (Exception e)
+        {
+            System.out.println("Error: Invalid input detected.");
+        }
+
+        sc.close();
+    }
+}
