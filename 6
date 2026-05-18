@@ -7,33 +7,33 @@ interface Shape
 
 class Circle implements Shape
 {
-    double radius;
-
-    Circle(double radius)
-    {
-        this.radius = radius;
-    }
-
     public void area()
     {
-        System.out.println("Area of Circle: " + (3.14 * radius * radius));
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter Radius: ");
+
+        double r = sc.nextDouble();
+
+        System.out.println("Area of Circle: " + (3.14 * r * r));
     }
 }
 
 class Rectangle implements Shape
 {
-    double length;
-    double breadth;
-
-    Rectangle(double length, double breadth)
-    {
-        this.length = length;
-        this.breadth = breadth;
-    }
-
     public void area()
     {
-        System.out.println("Area of Rectangle: " + (length * breadth));
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter Length: ");
+
+        double l = sc.nextDouble();
+
+        System.out.print("Enter Breadth: ");
+
+        double b = sc.nextDouble();
+
+        System.out.println("Area of Rectangle: " + (l * b));
     }
 }
 
@@ -48,29 +48,17 @@ public class ShapeDemo
         System.out.println("1. Circle");
         System.out.println("2. Rectangle");
 
-        System.out.print("Enter choice: ");
+        System.out.print("Enter Choice: ");
 
         int choice = sc.nextInt();
 
         if (choice == 1)
         {
-            System.out.print("Enter Radius: ");
-
-            double r = sc.nextDouble();
-
-            s = new Circle(r);
+            s = new Circle();
         }
         else
         {
-            System.out.print("Enter Length: ");
-
-            double l = sc.nextDouble();
-
-            System.out.print("Enter Breadth: ");
-
-            double b = sc.nextDouble();
-
-            s = new Rectangle(l, b);
+            s = new Rectangle();
         }
 
         s.area();
