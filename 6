@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 interface Shape
 {
-    void calculateArea();
+    void area();
 }
 
 class Circle implements Shape
@@ -14,11 +14,9 @@ class Circle implements Shape
         this.radius = radius;
     }
 
-    public void calculateArea()
+    public void area()
     {
-        double area = 3.14 * radius * radius;
-
-        System.out.println("Area of Circle is: " + area);
+        System.out.println("Area of Circle: " + (3.14 * radius * radius));
     }
 }
 
@@ -33,72 +31,49 @@ class Rectangle implements Shape
         this.breadth = breadth;
     }
 
-    public void calculateArea()
+    public void area()
     {
-        double area = length * breadth;
-
-        System.out.println("Area of Rectangle is: " + area);
+        System.out.println("Area of Rectangle: " + (length * breadth));
     }
 }
 
-public class Main
+public class ShapeDemo
 {
     public static void main(String[] args)
     {
         Scanner sc = new Scanner(System.in);
 
-        Shape s = null;
+        Shape s;
 
-        String ans;
+        System.out.println("1. Circle");
+        System.out.println("2. Rectangle");
 
-        do
+        System.out.print("Enter choice: ");
+
+        int choice = sc.nextInt();
+
+        if (choice == 1)
         {
-            System.out.println("\n***** AREA CALCULATOR *****");
+            System.out.print("Enter Radius: ");
 
-            System.out.println("1. Circle");
-            System.out.println("2. Rectangle");
+            double r = sc.nextDouble();
 
-            System.out.print("Enter choice: ");
+            s = new Circle(r);
+        }
+        else
+        {
+            System.out.print("Enter Length: ");
 
-            int choice = sc.nextInt();
+            double l = sc.nextDouble();
 
-            if (choice == 1)
-            {
-                System.out.print("Enter Radius: ");
+            System.out.print("Enter Breadth: ");
 
-                double r = sc.nextDouble();
+            double b = sc.nextDouble();
 
-                s = new Circle(r);
-            }
+            s = new Rectangle(l, b);
+        }
 
-            else if (choice == 2)
-            {
-                System.out.print("Enter Length: ");
-
-                double l = sc.nextDouble();
-
-                System.out.print("Enter Breadth: ");
-
-                double b = sc.nextDouble();
-
-                s = new Rectangle(l, b);
-            }
-
-            else
-            {
-                System.out.println("Invalid Input");
-            }
-
-            if (s != null)
-            {
-                s.calculateArea();
-            }
-
-            System.out.print("Do you want to continue? (y/n): ");
-
-            ans = sc.next();
-
-        } while (ans.equalsIgnoreCase("y"));
+        s.area();
 
         sc.close();
     }
