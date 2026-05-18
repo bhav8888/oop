@@ -1,13 +1,16 @@
-
 import java.util.Scanner;
 
 class Calculator {
     public static void main(String[] args) {
+
         Scanner sc = new Scanner(System.in);
+
         String ans = "n";
 
         try {
+
             do {
+
                 System.out.print("Enter first number: ");
                 double n1 = sc.nextDouble();
 
@@ -24,6 +27,7 @@ class Calculator {
                 int choose = sc.nextInt();
 
                 switch (choose) {
+
                     case 1:
                         System.out.println("Result: " + (n1 + n2));
                         break;
@@ -40,7 +44,8 @@ class Calculator {
 
                         if (n2 == 0) {
                             System.out.println("Error: Cannot divide by zero!");
-                        } else {
+                        } 
+                        else {
                             System.out.println("Result: " + (n1 / n2));
                         }
 
@@ -55,12 +60,14 @@ class Calculator {
 
             } while (ans.equalsIgnoreCase("y"));
 
-        } catch (Exception e) {
+        } 
+        catch (Exception e) {
 
             System.out.println("Invalid Input! Please use numbers.");
         }
 
         System.out.println("Thank you for using calculator");
+
         sc.close();
     }
 }
