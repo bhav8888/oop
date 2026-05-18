@@ -1,65 +1,76 @@
 import java.util.Scanner;
 
-class Person
+class Employee
 {
+    int empId;
     String name;
-    int age;
+    double salary;
 
-    void getPersonData(Scanner sc)
+    Employee(int empId, String name, double salary)
     {
-        System.out.print("Enter Name: ");
-        name = sc.nextLine();
-
-        System.out.print("Enter Age: ");
-        age = sc.nextInt();
+        this.empId = empId;
+        this.name = name;
+        this.salary = salary;
     }
 
-    void display()
+    void displayEmployee()
     {
-        System.out.println("Name: " + name);
-        System.out.println("Age: " + age);
+        System.out.println("Employee ID: " + empId);
+        System.out.println("Employee Name: " + name);
+        System.out.println("Salary: " + salary);
     }
 }
 
-class Student extends Person
+class Developer extends Employee
 {
-    int rollno;
-    String course;
+    String projectName;
 
-    void getStudentData(Scanner sc)
+    Developer(int empId, String name, double salary, String projectName)
     {
-        getPersonData(sc);
+        super(empId, name, salary);
 
-        System.out.print("Enter Roll No: ");
-        rollno = sc.nextInt();
-
-        sc.nextLine();
-
-        System.out.print("Enter Course: ");
-        course = sc.nextLine();
+        this.projectName = projectName;
     }
 
-    void displayInfo()
+    void displayDeveloper()
     {
-        display();
+        displayEmployee();
 
-        System.out.println("Roll No: " + rollno);
-        System.out.println("Course: " + course);
+        System.out.println("Project Name: " + projectName);
     }
+}
 
+public class EmployeeDemo
+{
     public static void main(String[] args)
     {
         Scanner sc = new Scanner(System.in);
 
-        Student s = new Student();
+        System.out.print("Enter Employee ID: ");
 
-        System.out.println("\n***** ENTER STUDENT DETAILS *****");
+        int id = sc.nextInt();
 
-        s.getStudentData(sc);
+        sc.nextLine();
 
-        System.out.println("\n***** STUDENT INFORMATION *****");
+        System.out.print("Enter Employee Name: ");
 
-        s.displayInfo();
+        String name = sc.nextLine();
+
+        System.out.print("Enter Salary: ");
+
+        double salary = sc.nextDouble();
+
+        sc.nextLine();
+
+        System.out.print("Enter Project Name: ");
+
+        String project = sc.nextLine();
+
+        Developer d1 = new Developer(id, name, salary, project);
+
+        System.out.println("\n----- Employee Details -----");
+
+        d1.displayDeveloper();
 
         sc.close();
     }
